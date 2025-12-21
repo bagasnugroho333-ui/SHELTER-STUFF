@@ -81,10 +81,28 @@
             animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
         }
 
+        /* Hidden state for WhatsApp button */
+        .wa-hidden {
+            opacity: 0;
+            transform: scale(0.5) translateY(20px);
+            pointer-events: none;
+        }
+
+        .wa-visible {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+        }
+
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #ea580c; border-radius: 10px; }
+
+        /* Hero Background Image Overlay */
+        .hero-bg-overlay {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.75) 50%, rgba(15, 23, 42, 0.85) 100%);
+        }
     </style>
 </head>
 <body class="text-slate-900">
@@ -107,8 +125,17 @@
     </nav>
 
     <section id="home" class="relative h-screen flex items-center justify-center px-6 overflow-hidden">
+        <!-- Background Image -->
         <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-800/50 to-slate-900/80 z-10"></div>
+            <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=2070" 
+                 alt="Camping Background" 
+                 class="w-full h-full object-cover"
+                 onerror="this.src='https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=2070'">
+            <div class="absolute inset-0 hero-bg-overlay z-10"></div>
+        </div>
+
+        <!-- Video Background (Optional - silakan hapus jika hanya mau foto) -->
+        <div class="absolute inset-0 z-[5] opacity-30">
             <video autoplay muted loop playsinline class="w-full h-full object-cover">
                 <source src="https://github.com/user-attachments/assets/1a970d68-555e-412f-885f-3e45c94e709a" type="video/mp4">
             </video>
@@ -263,8 +290,8 @@
         </div>
     </section>
 
-    <!-- Floating WhatsApp Button with Pulse Effect -->
-    <div class="fixed bottom-8 right-8 z-[100]" id="floatingWA">
+    <!-- Floating WhatsApp Button with Pulse Effect - Muncul setelah 30% scroll -->
+    <div class="fixed bottom-8 right-8 z-[100] wa-hidden transition-all duration-500" id="floatingWA">
         <div class="relative group">
             <!-- Tooltip -->
             <div class="absolute bottom-full right-0 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
@@ -322,16 +349,28 @@
             }, 800);
         });
 
-        // Navbar Scroll Effect
+        // Navbar & WhatsApp Button Scroll Effect
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
+            const waBtn = document.getElementById('floatingWA');
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
             
+            // Navbar effect
             if (window.scrollY > 50) {
                 nav.classList.add('py-2', 'shadow-md');
                 nav.classList.remove('py-4');
             } else {
                 nav.classList.add('py-4');
                 nav.classList.remove('py-2', 'shadow-md');
+            }
+
+            // WhatsApp button appears after 30% scroll
+            if (scrollPercent > 30) {
+                waBtn.classList.remove('wa-hidden');
+                waBtn.classList.add('wa-visible');
+            } else {
+                waBtn.classList.remove('wa-visible');
+                waBtn.classList.add('wa-hidden');
             }
         });
 
