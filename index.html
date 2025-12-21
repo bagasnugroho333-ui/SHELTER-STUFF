@@ -120,7 +120,7 @@
             <a href="#lokasi" class="hover:text-orange-600 transition">Lokasi</a>
         </div>
         <a href="https://wa.me/6281226816221" target="_blank" class="bg-orange-600 text-white px-5 py-2 rounded-full text-sm font-bold btn-shimmer flex items-center gap-2 transition-transform hover:scale-105">
-            <i class="fab fa-whatsapp text-lg"></i> 081226816221
+            <i class="fab fa-whatsapp text-lg"></i> Hubungi Admin
         </a>
     </nav>
 
@@ -238,16 +238,27 @@
                             <input type="text" id="nama" placeholder="Contoh: Andi Wijaya" class="bg-slate-50 border-2 border-slate-200 p-4 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all" required>
                         </div>
                         <div class="flex flex-col">
-                            <label class="font-bold text-xs uppercase text-slate-400 mb-2 ml-2">Tanggal Sewa</label>
-                            <input type="date" id="tgl" class="bg-slate-50 border-2 border-slate-200 p-4 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all" required>
+                            <label class="font-bold text-xs uppercase text-slate-400 mb-2 ml-2">No. WhatsApp</label>
+                            <input type="tel" id="noWa" placeholder="08123456789" class="bg-slate-50 border-2 border-slate-200 p-4 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all" required>
                         </div>
                     </div>
                     <div class="flex flex-col">
-                        <label class="font-bold text-xs uppercase text-slate-400 mb-2 ml-2">Daftar Alat</label>
-                        <textarea id="pesanan" rows="5" placeholder="Sebutkan alat yang disewa..." class="bg-slate-50 border-2 border-slate-200 p-4 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all" required></textarea>
+                        <label class="font-bold text-xs uppercase text-slate-400 mb-2 ml-2">Tanggal Sewa</label>
+                        <input type="date" id="tgl" class="bg-slate-50 border-2 border-slate-200 p-4 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all" required>
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="font-bold text-xs uppercase text-slate-400 mb-2 ml-2">Daftar Alat yang Disewa</label>
+                        <textarea id="pesanan" rows="5" placeholder="Contoh:
+- Kompor Portable (Rp 25.000)
+- Pan Multigrill (Rp 10.000)
+- Gas Portable (Rp 5.000)" class="bg-slate-50 border-2 border-slate-200 p-4 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all" required></textarea>
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="font-bold text-xs uppercase text-slate-400 mb-2 ml-2">Alamat Pengiriman (Opsional)</label>
+                        <textarea id="alamat" rows="3" placeholder="Masukkan alamat lengkap untuk pengiriman..." class="bg-slate-50 border-2 border-slate-200 p-4 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all"></textarea>
                     </div>
                     <button type="submit" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-black py-5 rounded-2xl btn-shimmer uppercase tracking-widest text-sm shadow-xl shadow-orange-200 transform hover:scale-[1.02] transition-transform">
-                        Kirim Pesanan ke WhatsApp
+                        <i class="fab fa-whatsapp mr-2"></i>Kirim Pesanan ke WhatsApp
                     </button>
                 </form>
             </div>
@@ -374,16 +385,61 @@
             }
         });
 
-        // WhatsApp Form Integration
+        // WhatsApp Form Integration with Auto-Fill
         document.getElementById('waForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // Ambil data dari form
             const nama = document.getElementById('nama').value;
+            const noWa = document.getElementById('noWa').value;
             const tgl = document.getElementById('tgl').value;
-            const pesan = document.getElementById('pesanan').value;
+            const pesanan = document.getElementById('pesanan').value;
+            const alamat = document.getElementById('alamat').value;
             const phone = "6281226816221";
             
-            const text = `Halo Admin CampRent, saya ingin booking sewa:\n\n*Nama:* ${nama}\n*Tanggal:* ${tgl}\n*Pesanan:* ${pesan}`;
-            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+            // Format tanggal ke Bahasa Indonesia
+            const dateObj = new Date(tgl);
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = dateObj.toLocaleDateString('id-ID', options);
+            
+            // Hitung total estimasi (opsional - bisa diaktifkan jika perlu)
+            // User bisa menghitung sendiri atau admin yang menghitung
+            
+            // Buat pesan WhatsApp yang terformat rapi dengan auto-fill
+            let text = `🏕️ *BOOKING SEWA ALAT CAMPING* 🏕️
+━━━━━━━━━━━━━━━━━━━━━
+
+👤 *Data Pemesan:*
+• Nama: ${nama}
+• No. WhatsApp: ${noWa}
+
+📅 *Detail Pemesanan:*
+• Tanggal Sewa: ${formattedDate}
+
+📦 *Daftar Alat yang Disewa:*
+${pesanan}`;
+
+            // Tambahkan alamat jika diisi
+            if (alamat.trim() !== '') {
+                text += `
+
+📍 *Alamat Pengiriman:*
+${alamat}`;
+            }
+
+            // Tambahkan footer
+            text += `
+
+━━━━━━━━━━━━━━━━━━━━━
+Mohon konfirmasi ketersediaan dan total harga.
+Terima kasih! 🙏`;
+
+            // Encode dan buka WhatsApp
+            const encodedText = encodeURIComponent(text);
+            window.open(`https://wa.me/${phone}?text=${encodedText}`, '_blank');
+            
+            // Optional: Reset form setelah submit
+            // this.reset();
         });
     </script>
 </body>
