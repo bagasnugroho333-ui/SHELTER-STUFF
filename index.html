@@ -60,7 +60,15 @@
             transform: translateY(-10px);
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
         }
+        /* Product Card Enhanced Styles */
+        .product-card {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
+        .product-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 25px 50px -12px rgba(234, 88, 12, 0.25);
+        }
         /* WhatsApp Floating Button with Pulse */
         @keyframes pulse-ring {
             0% {
@@ -191,34 +199,55 @@
             </div>
 
             <h3 class="text-lg md:text-xl font-bold mb-6 text-orange-600 italic" data-aos="fade-right"># Persiapan Alat Masak</h3>
-            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-12">
-                <div class="card-item bg-slate-50 p-4 md:p-6 rounded-2xl md:rounded-3xl border border-slate-100" data-aos="zoom-in">
-                    <h4 class="font-bold text-sm md:text-base mb-1">Kompor Portable</h4>
-                    <p class="text-orange-600 font-extrabold text-lg md:text-xl">Rp 25.000</p>
-                </div>
-              
-                </div>
-                <div class="card-item bg-slate-50 p-4 md:p-6 rounded-2xl md:rounded-3xl border border-slate-100" data-aos="zoom-in" data-aos-delay="100">
-                    <h4 class="font-bold text-sm md:text-base mb-1">Portable Mini</h4>
-                    <p class="text-orange-600 font-extrabold text-lg md:text-xl">Rp 5.000</p>
-                </div>
-                <div class="card-item bg-slate-50 p-4 md:p-6 rounded-2xl md:rounded-3xl border border-slate-100" data-aos="zoom-in" data-aos-delay="150">
-                    <h4 class="font-bold text-sm md:text-base mb-1">Bulgogi Pan</h4>
-                    <p class="text-orange-600 font-extrabold text-lg md:text-xl">Rp 15.000</p>
-                </div>
-                <div class="card-item bg-slate-50 p-4 md:p-6 rounded-2xl md:rounded-3xl border border-slate-100" data-aos="zoom-in" data-aos-delay="200">
-                    <h4 class="font-bold text-sm md:text-base mb-1">Pan Multigrill</h4>
-                    <p class="text-orange-600 font-extrabold text-lg md:text-xl">Rp 10.000</p>
-                </div>
-                <div class="card-item bg-slate-50 p-4 md:p-6 rounded-2xl md:rounded-3xl border border-slate-100" data-aos="zoom-in" data-aos-delay="250">
-                    <h4 class="font-bold text-sm md:text-base mb-1">Torch</h4>
-                    <p class="text-orange-600 font-extrabold text-lg md:text-xl">Rp 5.000</p>
-                </div>
-                <div class="card-item bg-slate-50 p-4 md:p-6 rounded-2xl md:rounded-3xl border border-slate-100" data-aos="zoom-in" data-aos-delay="300">
-                    <h4 class="font-bold text-sm md:text-base mb-1">Gas Portable (Sewa)</h4>
-                    <p class="text-orange-600 font-extrabold text-lg md:text-xl">Rp 5.000</p>
-                </div>
-            </div>
+<div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-12">
+    <!-- Kompor Portable -->
+    <div class="card-item product-card bg-white p-3 md:p-5 rounded-2xl md:rounded-3xl border-2 border-slate-200 hover:border-orange-500 overflow-hidden group" data-aos="zoom-in">
+        <div class="relative overflow-hidden rounded-xl md:rounded-2xl mb-3 md:mb-4 aspect-[3/4] bg-slate-100">
+            <img src="https://raw.githubusercontent.com/bagasnugroho333-ui/SHELTER-STUFF/e8c11412f2d2a91e9335c1b136da87586f3fb3ef/kompor%20portable.jpeg" 
+                 alt="Kompor Portable" 
+                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                 onerror="this.src='https://via.placeholder.com/400x533/f1f5f9/ea580c?text=Kompor+Portable'">
+        </div>
+        <h4 class="font-bold text-sm md:text-base mb-1 text-slate-800">Kompor Portable</h4>
+        <p class="text-orange-600 font-extrabold text-lg md:text-xl">Rp 25.000</p>
+    </div>
+
+    <!-- Bulgogi Pan -->
+    <div class="card-item product-card bg-white p-3 md:p-5 rounded-2xl md:rounded-3xl border-2 border-slate-200 hover:border-orange-500 overflow-hidden group" data-aos="zoom-in" data-aos-delay="50">
+        <div class="relative overflow-hidden rounded-xl md:rounded-2xl mb-3 md:mb-4 aspect-[3/4] bg-slate-100">
+            <img src="https://raw.githubusercontent.com/bagasnugroho333-ui/SHELTER-STUFF/a8866c391a31c02414f55ce9848d18e56b2a0cc4/bulgogi%20pan.jpeg" 
+                 alt="Bulgogi Pan" 
+                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                 onerror="this.src='https://via.placeholder.com/400x533/f1f5f9/ea580c?text=Bulgogi+Pan'">
+        </div>
+        <h4 class="font-bold text-sm md:text-base mb-1 text-slate-800">Bulgogi Pan</h4>
+        <p class="text-orange-600 font-extrabold text-lg md:text-xl">Rp 15.000</p>
+    </div>
+
+    <!-- Pan Multigrill -->
+    <div class="card-item product-card bg-white p-3 md:p-5 rounded-2xl md:rounded-3xl border-2 border-slate-200 hover:border-orange-500 overflow-hidden group" data-aos="zoom-in" data-aos-delay="100">
+        <div class="relative overflow-hidden rounded-xl md:rounded-2xl mb-3 md:mb-4 aspect-[3/4] bg-slate-100">
+            <img src="https://raw.githubusercontent.com/bagasnugroho333-ui/SHELTER-STUFF/a8866c391a31c02414f55ce9848d18e56b2a0cc4/multifumhsion%20griller.jpeg" 
+                 alt="Pan Multigrill" 
+                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                 onerror="this.src='https://via.placeholder.com/400x533/f1f5f9/ea580c?text=Pan+Multigrill'">
+        </div>
+        <h4 class="font-bold text-sm md:text-base mb-1 text-slate-800">Pan Multigrill</h4>
+        <p class="text-orange-600 font-extrabold text-lg md:text-xl">Rp 10.000</p>
+    </div>
+
+    <!-- Gas Portable -->
+    <div class="card-item product-card bg-white p-3 md:p-5 rounded-2xl md:rounded-3xl border-2 border-slate-200 hover:border-orange-500 overflow-hidden group" data-aos="zoom-in" data-aos-delay="150">
+        <div class="relative overflow-hidden rounded-xl md:rounded-2xl mb-3 md:mb-4 aspect-[3/4] bg-slate-100">
+            <img src="https://raw.githubusercontent.com/bagasnugroho333-ui/SHELTER-STUFF/a8866c391a31c02414f55ce9848d18e56b2a0cc4/portable%20gas.jpeg" 
+                 alt="Gas Portable" 
+                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                 onerror="this.src='https://via.placeholder.com/400x533/f1f5f9/ea580c?text=Gas+Portable'">
+        </div>
+        <h4 class="font-bold text-sm md:text-base mb-1 text-slate-800">Gas Portable (Sewa)</h4>
+        <p class="text-orange-600 font-extrabold text-lg md:text-xl">Rp 5.000</p>
+    </div>
+</div>
 
             <h3 class="text-lg md:text-xl font-bold mb-6 text-orange-600 italic" data-aos="fade-right"># Paket Grill & Service</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6">
