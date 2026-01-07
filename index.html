@@ -111,6 +111,95 @@
         .hero-bg-overlay {
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.75) 50%, rgba(15, 23, 42, 0.85) 100%);
         }
+        /* Carousel Styles */
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    position: relative;
+}
+
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-nav:hover {
+    background: #ea580c;
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-nav.prev {
+    left: 16px;
+}
+
+.carousel-nav.next {
+    right: 16px;
+}
+
+.carousel-dots {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #cbd5e1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-dot.active {
+    background: #ea580c;
+    width: 24px;
+    border-radius: 5px;
+}
+
+/* Image aspect ratio */
+.carousel-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .carousel-image {
+        height: 250px;
+    }
+    
+    .carousel-nav {
+        width: 40px;
+        height: 40px;
+    }
+}
+        
     </style>
 </head>
 <body class="text-slate-900">
@@ -262,42 +351,109 @@
 </div>
 
             <h3 class="text-lg md:text-xl font-bold mb-6 text-orange-600 italic" data-aos="fade-right"># Paket Grill & Service</h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6">
-    <!-- Paket Grill A -->
-    <div class="bg-gradient-to-br from-orange-600 to-orange-700 text-white p-6 md:p-8 rounded-2xl md:rounded-[2.5rem] shadow-xl shadow-orange-200 transform hover:scale-105 transition-all" data-aos="fade-up">
-        <span class="text-xs font-black uppercase tracking-widest opacity-70">Best Choice</span>
-        <h4 class="text-xl md:text-2xl font-bold mt-2 mb-3">Paket Grill A</h4>
-        <p class="text-3xl md:text-4xl font-black italic mb-4">Rp 50.000</p>
-        <div class="text-sm opacity-90 space-y-1 border-t border-white/20 pt-4">
-            <p>✓ Bulgogi Pan</p>
-            <p>✓ Kompor Portable</p>
-            <p>✓ Gas Portable</p>
+
+<!-- Carousel Container -->
+<div class="carousel-container rounded-3xl overflow-hidden mb-6 shadow-2xl" data-aos="fade-up">
+    <div class="carousel-track" id="carouselTrack">
+        
+        <!-- Slide 1: Paket Grill A -->
+        <div class="carousel-slide">
+            <div class="grid md:grid-cols-2 gap-6 bg-gradient-to-br from-orange-600 to-orange-700 text-white p-8 md:p-12">
+                <!-- Image -->
+                <div class="order-2 md:order-1">
+                    <img src="https://raw.githubusercontent.com/bagasnugroho333-ui/SHELTER-STUFF/a8866c391a31c02414f55ce9848d18e56b2a0cc4/bulgogi%20pan.jpeg" 
+                         alt="Paket Grill A - Bulgogi Pan" 
+                         class="carousel-image shadow-xl"
+                         onerror="this.src='https://via.placeholder.com/800x400/ea580c/ffffff?text=Paket+Grill+A'">
+                </div>
+                <!-- Content -->
+                <div class="order-1 md:order-2 flex flex-col justify-center">
+                    <span class="text-xs font-black uppercase tracking-widest opacity-70 mb-2">Best Choice</span>
+                    <h4 class="text-4xl md:text-5xl font-black mb-4">Paket Grill A</h4>
+                    <p class="text-5xl md:text-6xl font-black mb-6">Rp 50.000</p>
+                    <div class="space-y-3 text-lg">
+                        <p class="flex items-center gap-3"><span class="text-2xl">✓</span> Bulgogi Pan</p>
+                        <p class="flex items-center gap-3"><span class="text-2xl">✓</span> Kompor Portable</p>
+                        <p class="flex items-center gap-3"><span class="text-2xl">✓</span> Gas Portable</p>
+                    </div>
+                    <div class="mt-6 p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
+                        <p class="text-sm">🎁 <strong>BONUS GRATIS:</strong> Capit + Sumpit + Kuas</p>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <!-- Slide 2: Paket Grill B -->
+        <div class="carousel-slide">
+            <div class="grid md:grid-cols-2 gap-6 bg-gradient-to-br from-slate-800 to-slate-900 text-white p-8 md:p-12">
+                <!-- Image -->
+                <div class="order-2 md:order-1">
+                    <img src="https://raw.githubusercontent.com/bagasnugroho333-ui/SHELTER-STUFF/a8866c391a31c02414f55ce9848d18e56b2a0cc4/multifumhsion%20griller.jpeg" 
+                         alt="Paket Grill B - Multigrill Pan" 
+                         class="carousel-image shadow-xl"
+                         onerror="this.src='https://via.placeholder.com/800x400/1e293b/ffffff?text=Paket+Grill+B'">
+                </div>
+                <!-- Content -->
+                <div class="order-1 md:order-2 flex flex-col justify-center">
+                    <span class="text-xs font-black uppercase tracking-widest opacity-70 mb-2">Economic</span>
+                    <h4 class="text-4xl md:text-5xl font-black mb-4">Paket Grill B</h4>
+                    <p class="text-5xl md:text-6xl font-black text-orange-500 mb-6">Rp 45.000</p>
+                    <div class="space-y-3 text-lg">
+                        <p class="flex items-center gap-3"><span class="text-2xl">✓</span> Multigrill Pan</p>
+                        <p class="flex items-center gap-3"><span class="text-2xl">✓</span> Kompor Portable</p>
+                        <p class="flex items-center gap-3"><span class="text-2xl">✓</span> Gas Portable</p>
+                    </div>
+                    <div class="mt-6 p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
+                        <p class="text-sm">🎁 <strong>BONUS GRATIS:</strong> Capit + Sumpit + Kuas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Paket Grill C -->
+        <div class="carousel-slide">
+            <div class="grid md:grid-cols-2 gap-6 bg-gradient-to-br from-slate-100 to-slate-200 text-slate-900 p-8 md:p-12">
+                <!-- Image -->
+                <div class="order-2 md:order-1">
+                    <img src="https://raw.githubusercontent.com/bagasnugroho333-ui/SHELTER-STUFF/e57d1436f9f73da7a47c7018a85fd0ec9eeaa7b5/rounded%20griller.jpeg" 
+                         alt="Paket Grill C - Rounded Grill" 
+                         class="carousel-image shadow-xl"
+                         onerror="this.src='https://via.placeholder.com/800x400/f1f5f9/0f172a?text=Paket+Grill+C'">
+                </div>
+                <!-- Content -->
+                <div class="order-1 md:order-2 flex flex-col justify-center">
+                    <span class="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">Value Pack</span>
+                    <h4 class="text-4xl md:text-5xl font-black mb-4">Paket Grill C</h4>
+                    <p class="text-5xl md:text-6xl font-black text-orange-600 mb-6">Rp 40.000</p>
+                    <div class="space-y-3 text-lg">
+                        <p class="flex items-center gap-3"><span class="text-2xl">✓</span> Rounded Grill</p>
+                        <p class="flex items-center gap-3"><span class="text-2xl">✓</span> Kompor Portable</p>
+                        <p class="flex items-center gap-3"><span class="text-2xl">✓</span> Gas Portable</p>
+                    </div>
+                    <div class="mt-6 p-4 bg-orange-100 rounded-xl border-2 border-orange-300">
+                        <p class="text-sm">🎁 <strong>BONUS GRATIS:</strong> Capit + Sumpit + Kuas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Paket Grill B -->
-    <div class="bg-gradient-to-br from-slate-800 to-slate-900 text-white p-6 md:p-8 rounded-2xl md:rounded-[2.5rem] shadow-xl shadow-slate-300 transform hover:scale-105 transition-all" data-aos="fade-up" data-aos-delay="100">
-        <span class="text-xs font-black uppercase tracking-widest opacity-70">Economic</span>
-        <h4 class="text-xl md:text-2xl font-bold mt-2 mb-3">Paket Grill B</h4>
-        <p class="text-3xl md:text-4xl font-black text-orange-500 italic mb-4">Rp 45.000</p>
-        <div class="text-sm opacity-90 space-y-1 border-t border-white/20 pt-4">
-            <p>✓ Multigrill Pan</p>
-            <p>✓ Kompor Portable</p>
-            <p>✓ Gas Portable</p>
-        </div>
-    </div>
+    <!-- Navigation Buttons -->
+    <button class="carousel-nav prev" onclick="moveCarousel(-1)" aria-label="Previous">
+        <i class="fas fa-chevron-left text-xl"></i>
+    </button>
+    <button class="carousel-nav next" onclick="moveCarousel(1)" aria-label="Next">
+        <i class="fas fa-chevron-right text-xl"></i>
+    </button>
+</div>
 
-    <!-- Paket Grill C -->
-    <div class="bg-gradient-to-br from-slate-100 to-slate-200 text-slate-900 p-6 md:p-8 rounded-2xl md:rounded-[2.5rem] border-2 border-slate-200 transform hover:scale-105 transition-all" data-aos="fade-up" data-aos-delay="200">
-        <span class="text-xs font-black uppercase tracking-widest text-slate-400">Value Pack</span>
-        <h4 class="text-xl md:text-2xl font-bold mt-2 mb-3">Paket Grill C</h4>
-        <p class="text-3xl md:text-4xl font-black text-orange-600 italic mb-4">Rp 40.000</p>
-        <div class="text-sm space-y-1 border-t border-slate-300 pt-4">
-            <p>✓ Grill Pan Bulat</p>
-            <p>✓ Kompor Portable</p>
-            <p>✓ Gas Portable</p>
-        </div>
-    </div>
+<!-- Carousel Dots -->
+<div class="carousel-dots mb-6" data-aos="fade-up">
+    <span class="carousel-dot active" onclick="goToSlide(0)"></span>
+    <span class="carousel-dot" onclick="goToSlide(1)"></span>
+    <span class="carousel-dot" onclick="goToSlide(2)"></span>
+</div>
 </div>
 
 <!-- Bonus Info Banner -->
@@ -427,6 +583,86 @@
         </div>
     </footer>
 
+    // ==========================================
+// CAROUSEL FUNCTIONALITY
+// ==========================================
+let currentSlide = 0;
+const totalSlides = 3;
+const track = document.getElementById('carouselTrack');
+const dots = document.querySelectorAll('.carousel-dot');
+
+function updateCarousel() {
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    
+    // Update dots
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+    });
+}
+
+function moveCarousel(direction) {
+    currentSlide += direction;
+    
+    // Loop carousel
+    if (currentSlide < 0) {
+        currentSlide = totalSlides - 1;
+    } else if (currentSlide >= totalSlides) {
+        currentSlide = 0;
+    }
+    
+    updateCarousel();
+}
+
+function goToSlide(index) {
+    currentSlide = index;
+    updateCarousel();
+}
+
+// Auto-play carousel (ganti slide setiap 5 detik)
+let autoplayInterval = setInterval(() => {
+    moveCarousel(1);
+}, 5000);
+
+// Pause autoplay saat hover
+const carouselContainer = document.querySelector('.carousel-container');
+carouselContainer.addEventListener('mouseenter', () => {
+    clearInterval(autoplayInterval);
+});
+
+carouselContainer.addEventListener('mouseleave', () => {
+    autoplayInterval = setInterval(() => {
+        moveCarousel(1);
+    }, 5000);
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') moveCarousel(-1);
+    if (e.key === 'ArrowRight') moveCarousel(1);
+});
+
+// Touch swipe untuk mobile
+let touchStartX = 0;
+let touchEndX = 0;
+
+track.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+});
+
+track.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    if (touchStartX - touchEndX > 50) {
+        moveCarousel(1); // Swipe left
+    }
+    if (touchEndX - touchStartX > 50) {
+        moveCarousel(-1); // Swipe right
+    }
+}
+        
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         // Init Animate On Scroll
